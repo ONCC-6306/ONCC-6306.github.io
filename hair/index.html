@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>헤어 프랜차이즈 대시보드</title>
+<style>
+:root{--color-bg:#fff;--color-fg:#171717;--color-fg-muted:#6b6b6b;--color-panel:#f4f4f5;--color-border-line:#e0e0e3;
+--font-anthropic-sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;--font-anthropic-serif:var(--font-anthropic-sans);
+--cds-font-size-title:24px;--cds-font-size-heading:18px;--cds-font-size-body:14px;--cds-font-size-caption:12px;--cds-font-weight-medium:600;
+--cds-gap-xs:4px;--cds-gap-sm:8px;--cds-gap-md:12px;--cds-gap-lg:20px;--cds-pad-sm:8px;--cds-pad-md:14px;--cds-radius:8px;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--color-bg:#0e0e10;--color-fg:#f2f2f2;--color-fg-muted:#9b9ba1;--color-panel:#19191c;--color-border-line:#2f2f35;color-scheme:dark}}
+html,body{margin:0}
+body{background:var(--color-bg);color:var(--color-fg);font-family:var(--font-anthropic-sans);font-size:var(--cds-font-size-body);line-height:1.5;
+padding-block:24px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));max-width:1200px;margin:0 auto}
+select.dash-select{font:inherit;color:var(--color-fg);background:var(--color-bg);border:1px solid var(--color-border-line);border-radius:var(--cds-radius);padding:8px 10px}
+[hidden]{display:none!important}
+</style></head><body>
+<style>
+.logo{display:block;width:92px;aspect-ratio:200/47;background:var(--color-fg);--lg:url("data:image/png;base64,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");-webkit-mask:var(--lg) center/contain no-repeat;mask:var(--lg) center/contain no-repeat}
+.logo.foot{width:64px;opacity:.45;margin-top:var(--cds-gap-lg)}
+.search{display:flex;align-items:center;gap:8px;border:1px solid var(--color-border-line);border-radius:var(--cds-radius);padding:0 12px;margin-bottom:var(--cds-gap-md);max-width:360px;background:var(--color-bg);color:var(--color-fg-muted)}
+.search input{flex:1;min-width:0;border:0;outline:0;background:transparent;color:var(--color-fg);font:inherit;padding:10px 0}
+.search:focus-within{border-color:var(--oncc)}
+.t.stk th:nth-child(1),.t.stk td:nth-child(1){position:sticky;left:0;z-index:2;min-width:48px;width:48px;box-sizing:border-box;background:var(--color-bg)}
+.t.stk th:nth-child(2),.t.stk td:nth-child(2){position:sticky;left:48px;z-index:2;background:var(--color-bg);box-shadow:2px 0 0 var(--color-border-line)}
+.t.stk th:nth-child(1),.t.stk th:nth-child(2){background:var(--color-panel);z-index:4}
+:root{--oncc:#0096FF;--oncc-tint:rgba(0,150,255,.13)}
+.t th.sel{background:var(--oncc);color:#fff}
+.t td.sel{background:var(--oncc-tint);box-shadow:inset 2px 0 0 var(--oncc),inset -2px 0 0 var(--oncc)}
+.t td.sel .rkb{color:var(--oncc);font-weight:600}
+.ctl select.dash-select{border-color:var(--oncc)}
+.hd{display:flex;flex-direction:column;gap:var(--cds-gap-sm);margin-bottom:var(--cds-gap-lg)}
+.hd h1{font-family:var(--font-anthropic-serif);font-weight:400;font-size:var(--cds-font-size-title);margin:0}
+.hd p{margin:0;color:var(--color-fg-muted);font-size:var(--cds-font-size-body);max-width:70ch}
+.tabs{display:flex;gap:var(--cds-gap-xs);flex-wrap:wrap;margin-bottom:var(--cds-gap-md)}
+.tab{border:1px solid var(--color-border-line);background:var(--color-bg);color:var(--color-fg);border-radius:var(--cds-radius);padding:var(--cds-pad-sm) var(--cds-pad-md);cursor:pointer;font:inherit}
+.tab[aria-selected=true]{background:var(--color-panel);font-weight:var(--cds-font-weight-medium);border-color:var(--color-fg-muted)}
+.sec h2{font-size:var(--cds-font-size-heading);margin:0 0 var(--cds-gap-xs)}
+.sec .sub{color:var(--color-fg-muted);font-size:var(--cds-font-size-caption);margin:0 0 var(--cds-gap-md);max-width:80ch}
+.wrap{overflow:auto;max-height:72vh;border:1px solid var(--color-border-line);border-radius:var(--cds-radius)}
+table.t{border-collapse:collapse;width:100%;font-size:var(--cds-font-size-caption);font-variant-numeric:tabular-nums}
+.t th,.t td{padding:6px 10px;border-bottom:1px solid var(--color-border-line);text-align:right;white-space:nowrap}
+.t th{background:var(--color-panel);font-weight:var(--cds-font-weight-medium);position:sticky;top:0;z-index:3}
+.t td.l,.t th.l{text-align:left}
+.t td.note{white-space:normal;min-width:180px;text-align:left}
+.t td.rk{font-weight:var(--cds-font-weight-medium)}
+.t td,.t td.note{color:var(--color-fg)}
+.t td .mu{color:var(--color-fg-muted)}
+.t td.neg,.t td .neg{color:var(--oncc);font-weight:600}
+.unit{margin:0 0 4px;font-size:var(--cds-font-size-caption);font-weight:var(--cds-font-weight-medium)}
+.rkb{font-size:10px;color:var(--color-fg-muted);margin-left:4px}
+.kpis.bench{margin-top:var(--cds-gap-lg);margin-bottom:0}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--cds-gap-md);margin-bottom:var(--cds-gap-md)}
+.kpi{background:var(--color-panel);border:1px solid var(--color-border-line);border-radius:var(--cds-radius);padding:var(--cds-pad-md)}
+.kpi b{display:block;font-family:var(--font-anthropic-serif);font-weight:400;font-size:var(--cds-font-size-title)}
+.kpi span{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted)}
+.ctl{display:flex;gap:var(--cds-gap-sm);align-items:center;margin-bottom:var(--cds-gap-md);font-size:var(--cds-font-size-caption)}
+@media (max-width:640px){
+.tab{padding:12px 16px;min-height:44px;flex:1 1 0;text-align:center}
+.ctl select.dash-select{min-height:44px;flex:1}
+.ctl{flex-wrap:wrap}
+.sec .wrap:has(table.cards){border:0;overflow:visible;max-height:none}
+table.cards td{position:static!important;background:transparent!important;box-shadow:none!important;width:auto!important;min-width:0!important}
+table.cards,table.cards tbody{display:block;width:100%}
+table.cards thead{display:none}
+table.cards tr{display:grid;grid-template-columns:repeat(2,1fr);gap:6px 12px;padding:12px;margin-bottom:10px;border:1px solid var(--color-border-line);border-radius:var(--cds-radius);background:var(--color-panel)}
+table.cards td{display:block;border:0;padding:0;text-align:left;white-space:normal}
+table.cards td.rk{grid-column:1/-1;font-size:var(--cds-font-size-caption);color:var(--color-fg-muted)}
+table.cards td.rk[data-n]::after{content:'위'}
+table.cards td.nm{grid-column:1/-1;font-size:var(--cds-font-size-body);font-weight:var(--cds-font-weight-medium)}
+table.cards td[data-label]::before{content:attr(data-label);display:block;font-size:10px;color:var(--color-fg-muted)}
+table.cards td.note{grid-column:1/-1;min-width:0;font-size:11px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.t td.sel{box-shadow:none}
+}
+details{margin-top:var(--cds-gap-lg);color:var(--color-fg-muted);font-size:var(--cds-font-size-caption);max-width:80ch}
+</style>
+<div class="hd">
+<div class="logo" role="img" aria-label="ONCC"></div>
+<h1>헤어 프랜차이즈 대시보드</h1>
+<p data-draw="lead">—</p>
+</div>
+<div class="search"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+<input id="q" type="search" placeholder="브랜드·법인명 검색" aria-label="브랜드 검색" autocomplete="off"></div>
+<div class="tabs" role="tablist">
+<button class="tab" id="tab-m" role="tab" data-tab="m">월 평균매출</button>
+<button class="tab" id="tab-n" role="tab" data-tab="n">가맹점수</button>
+<button class="tab" id="tab-f" role="tab" data-tab="f">가맹본부 재무</button>
+</div>
+
+<section class="sec" id="sec-m">
+<h2>가맹점 월 평균매출 순위</h2>
+<p class="unit">단위 : 만원 (월 평균매출)</p>
+<p class="sub">월 평균매출 = 가맹점 연 평균매출 ÷ 12. 25년 월 평균매출 기준 내림차순으로 순위를 매깁니다. 가맹점이 적은 브랜드는 표본이 작을 수 있어 비고에 표시했고, 평균매출이 없는 브랜드는 순위 없이 맨 아래에 둡니다. '24년'과 '25년'의 기준 연도는 비고에 표시했습니다.</p>
+<div class="wrap"><table class="t stk" data-source="brands" data-row-key="name">
+<thead><tr><th>순위</th><th class="l" data-field="name">브랜드</th><th class="sel" data-field="m25">25년</th><th data-field="m24">24년</th><th data-field="dm">증감</th><th data-field="dmp">증감률</th><th class="l">비고</th></tr></thead>
+<tbody data-draw="tm"></tbody></table></div>
+</section>
+
+<section class="sec" id="sec-n" hidden>
+<h2>가맹점수 순위</h2>
+<p class="unit">단위 : 개</p>
+<p class="sub">전체 가맹점수(직영 제외) 25년 기준 내림차순, 24년과 비교합니다. 가맹점 0개 브랜드도 포함했습니다.</p>
+<div class="wrap"><table class="t stk" data-source="brands" data-row-key="name">
+<thead><tr><th>순위</th><th class="l" data-field="name">브랜드</th><th class="sel" data-field="n25">25년</th><th data-field="n24">24년</th><th data-field="dn">증감</th><th data-field="dnp">증감률</th><th class="l">비고</th></tr></thead>
+<tbody data-draw="tn"></tbody></table></div>
+</section>
+
+<section class="sec" id="sec-f" hidden>
+<h2>가맹본부 재무 순위</h2>
+<p class="sub">최신 정보공개서의 재무상황(단위: 억원), 값이 큰 순서입니다. 숫자 옆 #은 해당 항목의 순위입니다. 같은 법인의 브랜드는 재무 값이 같아 공동 순위로 표시합니다. 재무 미공시·0 브랜드는 순위에서 제외했습니다.</p>
+<div class="ctl"><label for="metric">정렬 기준</label>
+<select id="metric" class="dash-select" data-draw="metric"></select></div>
+<div class="wrap"><table class="t stk" data-source="brands" data-row-key="name">
+<thead><tr><th>순위</th><th class="l" data-field="name">브랜드</th><th data-field="asset">자산</th><th data-field="debt">부채</th><th data-field="equity">자본</th><th data-field="rev">매출액</th><th data-field="op">영업이익</th><th data-field="net">당기순이익</th><th data-field="dr">부채비율</th><th class="l">비고</th></tr></thead>
+<tbody data-draw="tf"></tbody></table></div>
+<div class="kpis bench" data-draw="bench"></div>
+</section>
+
+<details><summary>자료 기준과 한계</summary>
+<p>'최신 우선' 원칙: 브랜드별로 가장 최근 공시를 25, 그 직전 값을 24로 둡니다. 2026 정보공개서(2025사업연도)가 있으면 2025사업연도 vs 2024사업연도이고, 2025 정보공개서(2024사업연도)가 최신이면 2024사업연도 vs 2023사업연도입니다. 브랜드마다 기준 연도가 달라 비고에 적었습니다. 재무는 최신 공시의 가맹본부 법인 값이라 한 법인이 여러 브랜드를 운영하면 법인 전체 수치입니다. 업종 평균은 헤어가 아닌 '서비스 > 이미용' 전체 평균입니다. 광고·판촉비, 인테리어 비용, 계약기간은 이 화면에 포함하지 않았습니다.</p></details>
+
+<div class="logo foot" role="img" aria-label="ONCC"></div>
+
+<script src="data.js"></script>
+<script>
+const DATA={brands:{rows:_D.r.map(a=>{const o={};_D.c.forEach((k,i)=>o[k]=a[i]);o.note=_D.n[o.note];o.finok=!!o.finok;return o})},bench:_D.b};
+(function(){const f=s=>{const n=+(s.match(/\.(\d)f/)||[0,0])[1];return v=>Number(v).toLocaleString('en-US',{minimumFractionDigits:n,maximumFractionDigits:n})};
+window.d3={format:f,max:(a,fn)=>a.length?Math.max(...a.map(fn)):undefined};
+const reg={};
+window.dash={draw(name,fn){if(typeof fn==='function')reg[name]=fn;const f=reg[name];if(!f)return;document.querySelectorAll('[data-draw="'+name+'"]').forEach(el=>{if(!el.closest('[hidden]'))f(el)})},
+data(id){return {status:'ok',data:DATA[id]}},setLink(){},params:()=>({}),setParams(){}};
+window.__runAll=()=>Object.keys(reg).forEach(n=>dash.draw(n));
+})();
+</script>
+<script>
+const fmt0=d3.format(',.0f'),fmt1=d3.format(',.1f');
+const sgn=(v,f)=>v==null?'—':(v>0?'+':v<0?'−':'')+f(Math.abs(v));
+const cls=v=>v!=null&&v<0?'neg':'';
+const ok=id=>{const s=dash.data(id);return s.status==='ok'?(Array.isArray(s.data)?s.data:(s.data.rows||[])):null};
+const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
+const rowsOf=()=>ok('brands');
+let metric='asset';
+const MET={asset:'자산',debt:'부채',equity:'자본',rev:'매출액',op:'영업이익',net:'당기순이익'};
+function td(tr,txt,c,lab){const t=el('td',c,txt);if(lab)t.setAttribute('data-label',lab);tr.appendChild(t);return t}
+function rankCell(tr,v){const t=td(tr,v==null?'—':v,'rk');if(v!=null){t.setAttribute('data-n','1');if(window.__cnt&&window.__cnt[v]>1){const s=el('span','rkb','공동');s.style.display='block';s.style.marginLeft='0';t.appendChild(s)}}}
+function nameCell(tr,r){const t=td(tr,r.name,'l nm');const s=el('div','mu',r.corp||'');s.style.fontSize='10px';t.appendChild(s)}
+function drawTable(tb,rows,key,build){
+  tb.replaceChildren();
+  if(!rows){return}
+  const cnt={};rows.forEach(r=>{if(r[key]!=null)cnt[r[key]]=(cnt[r[key]]||0)+1});window.__cnt=cnt;
+  const qq=(window.__q||'').trim().toLowerCase();
+  if(qq)rows=rows.filter(r=>(r.name||'').toLowerCase().includes(qq)||(r.corp||'').toLowerCase().includes(qq));
+  if(!rows.length){const tr=document.createElement('tr');const t=el('td','l note','검색 결과가 없습니다.');t.colSpan=10;tr.appendChild(t);tb.appendChild(tr);return}
+  const sorted=rows.slice().sort((a,b)=>(a[key]==null)-(b[key]==null)||(a[key]-b[key])||(b.n25-a.n25));
+  sorted.forEach(r=>{const tr=document.createElement('tr');build(tr,r);tb.appendChild(tr)});
+}
+dash.draw('tm',tb=>{drawTable(tb,rowsOf(),'rk_m25',(tr,r)=>{
+  rankCell(tr,r.rk_m25);nameCell(tr,r);
+  td(tr,r.m25==null?'—':fmt0(r.m25),'sel','25년');
+  td(tr,r.m24==null?'—':fmt0(r.m24),'','24년');
+  td(tr,sgn(r.dm,fmt0),cls(r.dm),'증감');td(tr,r.dmp==null?'—':sgn(r.dmp,fmt1)+'%',cls(r.dmp),'증감률');
+  td(tr,r.note,'note')})});
+dash.draw('tn',tb=>{drawTable(tb,rowsOf(),'rk_n25',(tr,r)=>{
+  rankCell(tr,r.rk_n25);nameCell(tr,r);
+  td(tr,fmt0(r.n25),'sel','25년');
+  td(tr,r.n24==null?'—':fmt0(r.n24),'','24년');
+  td(tr,sgn(r.dn,fmt0),cls(r.dn),'증감');td(tr,r.dnp==null?'—':sgn(r.dnp,fmt1)+'%',cls(r.dnp),'증감률');
+  td(tr,r.note,'note')})});
+dash.draw('tf',tb=>{
+  const ks=['asset','debt','equity','rev','op','net'];
+  const ths=tb.closest('table').querySelectorAll('thead th');
+  ths.forEach((h,i)=>h.classList.toggle('sel',i>=2&&i<=7&&ks[i-2]===metric));
+  drawTable(tb,rowsOf(),'rk_'+metric,(tr,r)=>{
+  rankCell(tr,r['rk_'+metric]);nameCell(tr,r);
+  ['asset','debt','equity','rev','op','net'].forEach(k=>{
+    const t=td(tr,r[k]==null||!r.finok?'—':(r[k]<0?'−':'')+fmt1(Math.abs(r[k])/100000));
+    if(r.finok&&r['rk_'+k]){const s=el('span','rkb','#'+r['rk_'+k]);t.appendChild(s)}
+    if(r.finok&&r[k]<0)t.classList.add('neg');
+    if(k===metric)t.classList.add('sel')});
+  td(tr,r.dr==null?'—':fmt0(r.dr)+'%');
+  td(tr,(r.finok?r.fy_label+' · ':'')+r.note,'note')})});
+dash.draw('metric',sel=>{
+  sel.replaceChildren(...Object.entries(MET).map(([k,v])=>{const o=new Option(v,k);return o}));
+  sel.value=metric;
+  sel.onchange=()=>{metric=sel.value;dash.draw('tf')};
+});
+dash.draw('bench',box=>{
+  box.replaceChildren();
+  const b=ok('bench');if(!b||!b[0])return;const x=b[0];
+  [['이미용 업종 평균 부채비율',fmt1(x.debt_ratio)+'%'],['평균 영업이익률',fmt1(x.op_margin)+'%'],['평균 순이익률',fmt1(x.net_margin)+'%']].forEach(([l,v])=>{
+    const k=el('div','kpi');k.appendChild(el('b','',v));k.appendChild(el('span','',l+' · 2024사업연도, 이미용 전체'));box.appendChild(k)});
+});
+dash.draw('lead',p=>{
+  const r=rowsOf();if(!r){p.textContent='—';return}
+  const top=(k,v)=>r.filter(d=>d[k]===1)[0];
+  const m=top('rk_m25'),n=top('rk_n25'),a=top('rk_asset');
+  p.textContent=`헤어 ${r.length}개 브랜드 기준. 가맹점수 1위는 ${n.name}(${fmt0(n.n25)}개), 월 평균매출 1위는 ${m.name}(${fmt0(m.m25)}만원), 자산 1위 가맹본부는 ${a.name}입니다.`;
+});
+function show(k){
+  ['m','n','f'].forEach(t=>{document.getElementById('sec-'+t).hidden=t!==k;const b=document.getElementById('tab-'+t);b.setAttribute('aria-selected',t===k?'true':'false')});
+  dash.setLink('tab-'+k);
+  dash.draw({m:'tm',n:'tn',f:'tf'}[k]);
+}
+const qi=document.getElementById('q');
+if(qi)qi.addEventListener('input',()=>{window.__q=qi.value;['tm','tn','tf'].forEach(n=>dash.draw(n))});
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>show(b.dataset.tab)));
+{const h=(location.hash||'').replace('#tab-','');show(['m','n','f'].includes(h)?h:'m')}
+</script>
+
+<script>window.__runAll();document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>setTimeout(window.__runAll,0)));</script>
+</body></html>
